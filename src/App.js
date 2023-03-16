@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useEffect } from "react";
 import { messaging } from "./firebase-config";
+import { toast } from "react-toastify";
 import { getToken, onMessage } from "firebase/messaging";
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
     onMessage(messaging, (payload) => {
       console.log("Message received. ", payload);
       // ...
-      
+      toast.info(payload?.notification?.body);
     });
   }, []);
   return (
